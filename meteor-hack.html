@@ -8,7 +8,11 @@
 <template name="table">
 <table>
 {{#each element}}
-<tr><td>{{title}}</td></tr>
+<tr>
+	{{#each this}}
+		<td color="{{color}}">{{title}}</td>
+	{{/each}}
+</tr>
 {{/each}}
 </table>
 </template>

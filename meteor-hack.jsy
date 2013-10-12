@@ -1,12 +1,6 @@
 if (Meteor.isClient) {
-Session.set("els",[{title:"1"},{title:"2"}]);
-Template.table.element = function(){
-	console.log("wtf");
-	for()
-	return Session.get("els");
-}
-    var col, content, h, i, j, user, w;
-//    console.log('jquery loaded (via assets/js/main.coffee)');
+  var col, content, h, i, j, user, w;
+    console.log('jquery loaded (via assets/js/main.coffee)');
     content = '';
     w = 20;
     h = 20;
@@ -28,8 +22,8 @@ Template.table.element = function(){
       content += "</tr>";
       i++;
     }
-//    alert(content)
-    $("#tb").html(content);
+    alert("content")
+    $("#tb").append(content);
     return $("td").click(function() {
       return $(this).css("background", col);
     });

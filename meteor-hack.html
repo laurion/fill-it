@@ -7,10 +7,10 @@
 </body>
 <template name="table">
 	<table>
-		{{#each element}}
+		{{#each element.value}}
 		<tr>
 			{{#each this}}
-				<td style="background: {{color}}">{{title}}</td>
+				<td style="background: {{color}}">{{i}} {{j}}</td>
 			{{/each}}
 		</tr>
 		{{/each}}

@@ -6,13 +6,13 @@
 {{>table}}
 </body>
 <template name="table">
-<table>
-{{#each element}}
-<tr>
-	{{#each this}}
-		<td color="{{color}}">{{title}}</td>
-	{{/each}}
-</tr>
-{{/each}}
-</table>
+	<table>
+		{{#each element}}
+		<tr>
+			{{#each this}}
+				<td style="background: {{color}}">{{title}}</td>
+			{{/each}}
+		</tr>
+		{{/each}}
+	</table>
 </template>

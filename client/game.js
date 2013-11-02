@@ -1,7 +1,15 @@
 Template.board.element = function(){
-	item =  Items.findOne();
-  return item;
+    var	item =  Items.findOne(); 
+    return item;
+    
 }
+Template.board.screen = function (){
+        var scren = new Object()
+         scren.w = $(document.body).width()/20;   
+         scren.h = $(document).height()/25
+        return scren
+}
+
 Template.board.events({
   "click td": function(event){
     console.log(this);

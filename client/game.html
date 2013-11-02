@@ -3,9 +3,15 @@
 </head>
 
 <body>
-{{>table}}
+{{>page}}
 </body>
-<template name="table">
+<template name="page">
+  <div id="main">
+      {{> board }}
+  </div>
+</template>
+
+<template name="board">
 	<table>
 		{{#each element.value}}
 		<tr>

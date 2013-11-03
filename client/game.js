@@ -58,7 +58,7 @@ Template.board.events({
     // console.log(player().game_id);
     console.log(item);
     if(item && item.board) {
-      item.board[this.i][this.j].color = "blue";//player().color
+      item.board[this.i][this.j].color = Session.get("color"); //player().color;
       console.log(item.board[this.i][this.j]);
       Games.update(player().game_id, {board: item.board});
     }
@@ -76,6 +76,7 @@ Meteor.startup(function () {
   console.log("player_id: " + player_id);
 
   Session.set('player_id', player_id);
+  Session.set('color', get_random_color());
 
   Meteor.subscribe('players');
 

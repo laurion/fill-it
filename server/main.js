@@ -1,5 +1,4 @@
 ////////// Server only logic //////////
-
 Meteor.methods({
   start_new_game: function () {
     console.log("Starting new game...");
@@ -7,8 +6,9 @@ Meteor.methods({
     var game_id = Games.insert({board: new_board(),
                                 clock: 120});
     // move everyone who is ready in the lobby to the game
-    Players.update({game_id: null, idle: false, name: {$ne: ''}},// color: COLORS[Math.rand()*COLORS.length]
-                   {$set: {game_id: game_id}},
+    
+    Players.update({game_id: null, idle: false, name: {$ne: ''}},// color: ''},
+                   {$set: {game_id: game_id}},//,color:chosen_color}},
                    {multi: true});
     // Save a record of who is in the game, so when they leave we can
     // still show them.

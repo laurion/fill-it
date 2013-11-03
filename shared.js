@@ -5,7 +5,7 @@ Games = new Meteor.Collection('games');
 Players = new Meteor.Collection('players');
 // {name: 'laur', game_id: xxx}
 
-var COLORS = ['blue','red','green','black','yellow','orange','purple'];
+COLORS = ['blue','red','green','yellow','orange','purple'];
 // generate a new random selection of letters.
 new_board = function () {
 	console.log("GENERATING NEW BOARD!!!!!!!!");
@@ -21,6 +21,22 @@ new_board = function () {
   	return board;
 };
 
+get_random_color = function() {
+	if(COLORS.length) {
+      var index = parseInt(Math.random()*COLORS.length,10);
+      var chosen_color = COLORS[index];
+      COLORS.splice(index,1);
+    }
+    else {
+      var letters = '0123456789ABCDEF'.split('');
+      chosen_color = '#';
+      for (var i = 0; i < 6; i++ ) {
+      	chosen_color += letters[Math.round(Math.random() * 15)];
+      }
+    }
+    console.log(chosen_color);
+    return chosen_color;
+}
 
 if (Meteor.isServer) {
 	// publish all the non-idle players.

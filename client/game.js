@@ -50,6 +50,13 @@ Template.board.element = function() {
 	if(player() && player().game_id) 
     return Games.findOne(player().game_id);
 }
+Template.board.screen = function (){
+        var scren = new Object()
+         scren.w = $(document.body).width()/20;   
+         scren.h = $(document).height()/25
+        return scren
+}
+
 Template.board.events({
   "click td": function(event) {
     console.log(this);

@@ -14,11 +14,11 @@
 
 <template name="board">
 	<div id="board">
-		<table>
+		<table border=1>
 			{{#each element.board}}
 			<tr>
 				{{#each this}}
-					<td style="background: {{color}}">{{i}} {{j}}</td>
+					<td style="background: {{color}};width:{{screen.w}}px; height:{{screen.h}}px;"></td>
 				{{/each}}
 			</tr>
 			{{/each}}

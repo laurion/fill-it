@@ -3,3 +3,5 @@ view online users
 nicer design
 don't allow to overwrite other users' colors
 clean up
+BUG: same color, different users
+improve performance, don't rewrite whole board

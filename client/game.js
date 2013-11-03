@@ -27,6 +27,29 @@ Template.lobby.show = function () {
   return !game();
 };
 
+Template.lobby.waiting = function () {
+  var players = Players.find({_id: {$ne: Session.get('player_id')},
+                              name: {$ne: ''},
+                              game_id: {$exists: false}});
+
+  return players;
+};
+
+Template.lobby.count = function () {
+  var players = Players.find({_id: {$ne: Session.get('player_id')},
+                              name: {$ne: ''},
+                              game_id: {$exists: false}});
+
+  return players.count();
+};
+
+Template.lobby.disabled = function () {
+  var me = player();
+  if (me && me.name)
+    return '';
+  return 'disabled="disabled"';
+};
+
 Template.lobby.events({
   'keyup input#myname': function (evt) {
     var name = $('#lobby input#myname').val().trim();

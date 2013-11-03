@@ -16,5 +16,11 @@ table {
     #unseen table th:nth-child(8){display: none;}
 
 }
-
+td {
+    //color: #000 ;
+    background-color: #ffb200 ;
+    border: 1px outset #b37d00 ;
+    text-decoration: none ;
+    //display: block ;
+}
 

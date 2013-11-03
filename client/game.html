@@ -13,7 +13,14 @@
 </template>
 
 <template name="board">
-	<div id="board">
+    {{#if 1}}
+    <div id="stats">
+    <h2>  {{player_name}}  </h2>
+    <span> {{score}} </span>
+        
+    </div>
+    {{/if}}
+    <div id="board">
 		<table border=1>
 			{{#each element.board}}
 			<tr>

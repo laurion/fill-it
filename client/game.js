@@ -77,7 +77,7 @@ Template.board.element = function() {
 Template.board.screen = function (){
         var scren = new Object()
          scren.w = $(document.body).width()/20;   
-         scren.h = $(document).height()/25
+         scren.h = ($(document).height()-200)/25
         return scren
 }
 

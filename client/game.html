@@ -8,17 +8,42 @@
 <template name="page">
   <div id="main">
       {{> board }}
+      {{> lobby }}
   </div>
 </template>
 
 <template name="board">
-	<table>
-		{{#each element.value}}
-		<tr>
-			{{#each this}}
-				<td style="background: {{color}}">{{i}} {{j}}</td>
+	<div id="board">
+		<table>
+			{{#each element.board}}
+			<tr>
+				{{#each this}}
+					<td style="background: {{color}}">{{i}} {{j}}</td>
+				{{/each}}
+			</tr>
 			{{/each}}
-		</tr>
-		{{/each}}
-	</table>
+		</table>
+	</div>
+</template>
+
+<template name="lobby">
+  <div>
+    {{#if show }}
+    <div id="lobby">
+      <h1>What's your name?</h1>
+      <input id="myname" type="text" />
+      {{#if count}}
+      <h1>{{count}} other players are in the lobby:</h1>
+      {{#each waiting }}
+      <div class="player">{{name}}</div>
+      {{/each}}
+      {{/if}}
+      <div>
+        <button id="startgame" class="startgame" {{{disabled}}}>
+          {{#if count}} It's on! {{else}} Play solo {{/if}}
+        </button>
+      </div>
+    </div>
+    {{/if}}
+  </div>
 </template>

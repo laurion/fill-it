@@ -4,7 +4,7 @@
 
 var player = function () {
   return Players.findOne(Session.get('player_id'));
-};
+  };
 
 var game = function () {
   // console.log("game():");
@@ -53,6 +53,7 @@ Template.lobby.disabled = function () {
 Template.lobby.events({
   'keyup input#myname': function (evt) {
     var name = $('#lobby input#myname').val().trim();
+    Session.set("player_name" , name)
     Players.update(Session.get('player_id'), {$set: {name: name}});
   },
   'click button.startgame': function () {
@@ -76,23 +77,37 @@ Template.board.element = function() {
 Template.board.screen = function (){
         var scren = new Object()
          scren.w = $(document.body).width()/20;   
-         scren.h = $(document).height()/25
+         scren.h = ($(document).height()-200)/25
         return scren
 }
 
+Template.board.score = function(){
+        return Session.get("player_score");
+}
+Template.board.player_name = function()
+{
+        return Session.get('player_name')
+
+}
 Template.board.events({
   "click td": function(event) {
-    console.log(this);
+    //console.log(this);
     // console.log(Session.get('player_id'));
+    
     item = Games.findOne(player().game_id);
     // console.log(player().game_id);
+    if(item.board[this.i][this.j].color == 'grey')
+    {
     console.log(item);
+    var score = Session.get('player_score') + 1;
     if(item && item.board) {
       item.board[this.i][this.j].color = Session.get("color"); //player().color;
       console.log(item.board[this.i][this.j]);
       Games.update(player().game_id, {board: item.board});
     }
-  }
+    Session.set("player_score", score);
+    } 
+}
 });
 
 Meteor.startup(function () {
@@ -104,10 +119,10 @@ Meteor.startup(function () {
   // knows about us.
   var player_id = Players.insert({name: '', idle: false});
   console.log("player_id: " + player_id);
-
+  Session.set('player_score', 0);
   Session.set('player_id', player_id);
   Session.set('color', get_random_color());
-
+  Session.set('player_name', 'None')
   Meteor.subscribe('players');
 
   Meteor.autorun(function () {

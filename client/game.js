@@ -110,7 +110,8 @@ Meteor.startup(function () {
 
   Meteor.subscribe('players');
 
-  Deps.autorun(function () {
+  Meteor.autorun(function () {
+    console.log("Deps or meteor autorun for reactive re-running");
     Meteor.subscribe('players');
 
     if (Session.get('player_id')) {

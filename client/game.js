@@ -77,8 +77,8 @@ Template.board.element = function() {
 Template.board.screen = function (){
         var scren = new Object()
          scren.w = $(document.body).width()/20;   
-         scren.h = ($(document).height()-200)/25
-        return scren
+         scren.h = ($(document).height()-200)/25;
+        return scren;
 }
 
 Template.board.score = function(){
@@ -90,7 +90,7 @@ Template.board.player_name = function()
 
 }
 Template.board.events({
-  "click td": function(event) {
+  "mousedown td": function(event) {
     //console.log(this);
     // console.log(Session.get('player_id'));
     

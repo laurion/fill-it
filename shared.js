@@ -1,7 +1,15 @@
 Games = new Meteor.Collection('games');
 // { players: [{player_id, name}], winners: [player_id] }
 // Items = new Meteor.Collection('items');
-
+Array.prototype.remByVal = function(val) {
+ for (var i = 0; i < this.length; i++) {
+     if (this[i] === val) {
+            this.splice(i, 1);
+            i--;
+            }
+               }
+     return this;
+}
 Players = new Meteor.Collection('players');
 // {name: 'laur', game_id: xxx}
 
@@ -34,7 +42,8 @@ get_random_color = function() {
       	chosen_color += letters[Math.round(Math.random() * 15)];
       }
     }
-    console.log(chosen_color);
+    //console.log(chosen_color);
+    COLOR.remByVal(chosen_color);
     return chosen_color;
 }
 

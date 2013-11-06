@@ -1,7 +1,5 @@
-score system
-view online users
-nicer design
-don't allow to overwrite other users' colors
-clean up
+score system and win
 BUG: same color, different users
 improve performance, don't rewrite whole board
+nicer design
+clean up

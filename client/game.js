@@ -89,8 +89,7 @@ Template.board.player_name = function()
         return Session.get('player_name')
 
 }
-Template.board.events({
-  "mousedown td": function(event) {
+var clicked = function(event) {
     //console.log(this);
     // console.log(Session.get('player_id'));
     
@@ -108,6 +107,9 @@ Template.board.events({
     Session.set("player_score", score);
     } 
 }
+Template.board.events({
+  "mousedown td": clicked,
+  "touchstart td": clicked
 });
 
 Meteor.startup(function () {
@@ -123,10 +125,8 @@ Meteor.startup(function () {
   Session.set('player_id', player_id);
   Session.set('color', get_random_color());
   Session.set('player_name', 'None')
-  Meteor.subscribe('players');
 
-  Meteor.autorun(function () {
-    console.log("Deps or meteor autorun for reactive re-running");
+  Deps.autorun(function () {
     Meteor.subscribe('players');
 
     if (Session.get('player_id')) {

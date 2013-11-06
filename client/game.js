@@ -53,7 +53,8 @@ Template.lobby.disabled = function () {
 Template.lobby.events({
   'keyup input#myname': function (evt) {
     var name = $('#lobby input#myname').val().trim();
-    Session.set("player_name" , name)
+    Session.set("player_name" , name);
+    console.log(Session.get('player_id'));
     Players.update(Session.get('player_id'), {$set: {name: name}});
   },
   'click button.startgame': function () {
@@ -71,8 +72,11 @@ Template.lobby.events({
 //////
 
 Template.board.element = function() {
-	if(player() && player().game_id) 
+  if(player() && player().game_id) 
     return Games.findOne(player().game_id);
+}
+Template.board.show = function() {
+  return !!game();
 }
 Template.board.screen = function (){
         var scren = new Object()

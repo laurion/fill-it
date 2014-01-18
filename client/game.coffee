@@ -12,6 +12,8 @@
 #
 
 
+
+
 #////
 #//// Utility functions
 #////
@@ -75,6 +77,7 @@ Template.lobby.events
   "keyup input#myname": (evt) ->
     name = $("#lobby input#myname").val().trim()
     Session.set "player_name", name
+    console.log Session.get("player_id")
     Players.update Session.get("player_id"),
       $set:
         name: name
@@ -94,6 +97,9 @@ Template.lobby.events
 #////
 Template.board.element = ->
   Games.findOne player().game_id  if player() and player().game_id
+
+Template.board.show = ->
+  !!game()
 
 Template.board.screen = ->
   scren = new Object()

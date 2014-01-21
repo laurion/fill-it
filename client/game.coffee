@@ -157,6 +157,7 @@ Meteor.startup ->
     if Session.get("player_id")
       me = player()
       console.log "me: " + me
+      Meteor.subscribe "colors" , "white"
       if me and me.game_id
         console.log "me.game_id: " + me.game_id
         Meteor.subscribe "games", me.game_id
@@ -173,5 +174,8 @@ Meteor.startup ->
     Meteor.call "keepalive", Session.get("player_id")  if Meteor.status().connected
   ), 20 * 1000
 
+  Meteor.setInterval (->
+    Meteor.call "keepalive", Session.get("color")  if Meteor.status().connected
+  ), 20 * 1000
 
 #Meteor.subscribe("items");

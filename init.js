@@ -15,18 +15,15 @@
 
 Games = new Meteor.Collection('games');
 Players = new Meteor.Collection('players');
-
+Colors = new Meteor.Collection('colors');
 
 // End collections declaration
 // 
 // -------------------------
 //
-// Start arrays declaration
-
-COLORS = ['blue','red','green','yellow','orange','purple'];
-
-// End arrays declaration
-
+//Start global varibale declaration
+//
+var q = 0;
 // Start functions declaration
 
 //new_board :: generate a new random selection of letters.
@@ -43,21 +40,38 @@ new_board = function () {
 	}
   	return board;
 };
+//insert_colors :: insert random ten colors in db
+insert_colors = function () {
+        
+
+          var letters = '0123456789ABCDEF'.split('');
+          chosen_color = '#';
+             for (var j = 0; j < 6; j++ ) {
+            	chosen_color += letters[Math.round(Math.random() * 15)];
+                }
+                
+              Colors.insert({"cid" : q , color : chosen_color, use:0});
+              q++;
+               
+    
+     
+};
 //get_random_color :: get a random element of COLORS array
 get_random_color = function() {
-	if(COLORS.length) {
-      var index = parseInt(Math.random()*COLORS.length,10);
-      var chosen_color = COLORS[index];
-      COLORS.splice(index,1);
+	var count = Colors.find({ use : 0 }).count();
+    if(count == 0) {
+        insert_colors();
+        count = Colors.find({ use : 0 }).count();
     }
-    else {
-      var letters = '0123456789ABCDEF'.split('');
-      chosen_color = '#';
-      for (var i = 0; i < 6; i++ ) {
-      	chosen_color += letters[Math.round(Math.random() * 15)];
-      }
-    }
+
+      var t  = parseInt(Math.random()*count,10);
+      var col  = Colors.findOne({"cid" : t});
+      var chosen_color = col.color;
+
+      
+       Colors.update({"_id" : col._id }, { $set : { "use" : 1 } });    
+ 
     console.log(chosen_color);
     return chosen_color;
-}
+};
 

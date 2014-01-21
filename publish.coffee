@@ -21,4 +21,5 @@ if Meteor.isServer
   Meteor.publish "games", (id) ->
     check id, String
     Games.find _id: id
-
+  Meteor.publish "colors", ->
+    Colors.find idle: false

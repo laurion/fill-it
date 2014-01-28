@@ -1,18 +1,26 @@
 <head>
   <title>FILL-IT</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"> 
-</head>
+ </head>
 
 <body>
 {{>page}}
 </body>
 <template name="page">
-  <div id="main">
+    {{> cssFront}}
+    <div id="main">
       {{> board }}
       {{> lobby }}
   </div>
 </template>
-
+<template name="cssFront">
+  <style>
+  tr td {
+  width : {{screen.w}}px;
+  height: {{screen.h}}px;
+  }
+  </style>
+  </template>
 <template name="board">
     {{#if show}}
     <div id="stats">
@@ -26,7 +34,7 @@
 			{{#each element.board}}
 			<tr>
 				{{#each this}}
-					<td style="background: {{color}};width:{{screen.w}}px; height:{{screen.h}}px;"></td>
+					<td style="background: {{color}};"></td>
 				{{/each}}
 			</tr>
 			{{/each}}

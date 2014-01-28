@@ -67,7 +67,6 @@ Template.lobby.count = ->
       $exists: false
   )
   players.count()
-
 Template.lobby.disabled = ->
   me = player()
   return ""  if me and me.name
@@ -101,7 +100,7 @@ Template.board.element = ->
 Template.board.show = ->
   !!game()
 
-Template.board.screen = ->
+Template.cssFront.screen = ->
   scren = new Object()
   scren.w = $(document.body).width() / 20
   scren.h = ($(document).height() - 200) / 25
